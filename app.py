@@ -18,6 +18,7 @@ def home():
 @app.route('/https/<url>')
 def root(url):    
     url = url
+    print(url)
     r = requests.get(url)
     rr = Response(response=r.content, status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
