@@ -15,10 +15,13 @@ def home():
     usage = 'Pass a properly encoded url parameter e.g. /https/www.google.com'
     return usage
 
+import base64
 @app.route('/https/<url>')
 def root(url):    
-    url = url
-    print("url<<<",url)
+    
+    print("base64 url>>>",url)
+    url=base64.decodestring(str.encode(url)) 
+    print("url>>>",url)
     r = requests.get(url)
     rr = Response(response=r.content, status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
