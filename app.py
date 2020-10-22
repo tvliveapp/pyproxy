@@ -26,6 +26,7 @@ def root(url):
     print("url>>>",url)
     r = requests.get(url)
     rr = Response(response=r.content, status=r.status_code)
+    print(r.headers['Content-Type'])
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
 
