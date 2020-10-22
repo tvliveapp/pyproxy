@@ -1,5 +1,7 @@
 import os
 import requests
+from requests.structures import CaseInsensitiveDict
+
 from lxml import html
 
 from flask import request
@@ -27,6 +29,18 @@ def root(url):
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
 
+@app.route('/ref/<url>')
+def root(url):    
+    
+    print("base64 url>>>",url)
+    url=base64.decodestring(str.encode(url)) 
+    print("url>>>",url)
+    headers = CaseInsensitiveDict()
+    headers["Referer"] =url.split("|")[1]
+    r = requests.get(url.split("|")[0],headers=headers)
+    rr = Response(response=r.content, status=r.status_code)
+    rr.headers["Content-Type"] = r.headers['Content-Type']
+    return rr
 @app.route('/g/<keyword>')
 def gkeyword(keyword):    
     url = 'https://www.google.com/search'
