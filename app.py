@@ -30,7 +30,7 @@ def root(url):
     return rr
 
 @app.route('/ref/<url>')
-def root(url):    
+def ref(url):    
     
     print("base64 url>>>",url)
     url=base64.decodestring(str.encode(url)) 
