@@ -33,7 +33,7 @@ def root(url):
 def ref(url):    
     
     print("base64 url>>>",url)
-    url=base64.decodestring(str.encode(url)) 
+    url=base64.decodestring(str.encode(url).decode('utf-8')) 
     print("url>>>",url)
     headers = CaseInsensitiveDict()
     print("ref: "+url.split("|")[1])
