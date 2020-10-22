@@ -34,11 +34,14 @@ def ref(url):
     
     print("base64 url>>>",url)
     url=base64.decodestring(str.encode(url)) 
+    
     print("url>>>",url.decode('utf-8'))
     headers = CaseInsensitiveDict()
-    print("ref: "+url.decode('utf-8').split("|")[1])
-    headers["Referer"] =url.split("|")[1]
-    r = requests.get(url.split("|")[0],headers=headers)
+    url=url.decode('utf-8').split("|")[0]
+    ref=url.decode('utf-8').split("|")[1]
+    print("ref: "+ref)
+    headers["Referer"] =ref
+    r = requests.get(url,headers=headers)
     rr = Response(response=r.content, status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
