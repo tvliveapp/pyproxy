@@ -38,8 +38,8 @@ def ref(url):
     
     print("url>>>",url.decode('utf-8'))
     headers = CaseInsensitiveDict()
-    ref=url.decode('utf-8').split("|")[1]
-    url=url.decode('utf-8').split("|")[0]
+    ref=url.split("|")[1]
+    url=url.split("|")[0]
     
     print("ref: "+ref)
     headers["Referer"] =ref
