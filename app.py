@@ -22,6 +22,7 @@ def iptvhd(id):
     url = "http://iptvhd.club/aptv/vip/cablehd.php?id="
     headers = CaseInsensitiveDict()
     headers["User-Agent"] = "loaB6oIZOla892u1q9qoi9j31BrzLRzQgfTrvXYGnfIVrkwb9402QA44LkyZf98xmMznUTqpoIZoeQk"
+    headers["Referer"] = ""
     resp = requests.get(url, headers=headers)
     a=resp.text.split('Clappr.Player(')[1]
     b=a.split('{')[1]
