@@ -25,7 +25,7 @@ def iptvhd(id):
     resp = requests.get(url, headers=headers)
     a=resp.text.split('Clappr.Player(')[1]
     b=a.split('{')[1]
-    retunr(b.split('\'')[1])
+    return(b.split('\'')[1])
 
 import base64
 @app.route('/https/<url>')
