@@ -17,8 +17,8 @@ def home():
     usage = 'Pass a properly encoded url parameter e.g. /https/www.google.com'
     return usage
 
-@app.route('/iptchd/<id>')
-def ref(id):
+@app.route('/iptvhd/<id>')
+def iptvhd(id):
     url = "http://iptvhd.club/aptv/vip/cablehd.php?id="
     headers = CaseInsensitiveDict()
     headers["User-Agent"] = "loaB6oIZOla892u1q9qoi9j31BrzLRzQgfTrvXYGnfIVrkwb9402QA44LkyZf98xmMznUTqpoIZoeQk"
