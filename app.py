@@ -47,7 +47,6 @@ def ref(url):
     
     rr = Response(response=r.content, status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
-    print(r.text)
     return rr
 @app.route('/g/<keyword>')
 def gkeyword(keyword):    
