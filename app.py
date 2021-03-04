@@ -66,7 +66,8 @@ def ref(url):
     print("ref: "+ref)
     headers["Referer"] =ref
     r = requests.get(url,headers=headers)
-    a=r.content.replace('==','!=')
+    a=r.content
+    print(type(a))
     rr = Response(response=bytes(a, 'utf-8'), status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
