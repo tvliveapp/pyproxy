@@ -1,5 +1,6 @@
 import os
 import requests
+
 from requests.structures import CaseInsensitiveDict
 
 from lxml import html
