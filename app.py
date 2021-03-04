@@ -66,8 +66,8 @@ def ref(url):
     print("ref: "+ref)
     headers["Referer"] =ref
     r = requests.get(url,headers=headers)
-    
-    rr = Response(response=r.content.replace('==','!=').encode(), status=r.status_code)
+    a=r.content.replace('==','!=')
+    rr = Response(response=bytes(a, 'utf-8'), status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
 @app.route('/g/<keyword>')
