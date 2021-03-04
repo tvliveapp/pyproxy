@@ -72,7 +72,8 @@ def ref(url):
     b=a.split('{')[1]
     b=b.split('\'')[1]
     rr = Response(response=bytes(b,'utf-8'), status=r.status_code)
-    rr.headers["Content-Type"] = r.headers['Content-Type']
+    #rr.headers["Content-Type"] = r.headers['Content-Type']
+    rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
     return rr
 @app.route('/g/<keyword>')
 def gkeyword(keyword):    
