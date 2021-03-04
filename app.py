@@ -70,7 +70,7 @@ def ref(url):
     a=a.replace('==','!=',1)
     a=a.split('Clappr.Player(')[1]
     b=a.split('{')[1]
-    b=split('\'')[1]
+    b=b.split('\'')[1]
     rr = Response(response=bytes(b,'utf-8'), status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
