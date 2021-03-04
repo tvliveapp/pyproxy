@@ -7,9 +7,15 @@ from lxml import html
 from flask import request
 from flask import Flask
 from flask import Response
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+
+
 
 
 @app.route('/')
@@ -18,6 +24,7 @@ def home():
     return usage
 
 @app.route('/iptvhd/<id>')
+@cross_origin()
 def iptvhd(id):
     url = "http://iptvhd.club/aptv/vip/cablehd.php?id="
     headers = CaseInsensitiveDict()
@@ -30,6 +37,7 @@ def iptvhd(id):
 
 import base64
 @app.route('/https/<url>')
+@cross_origin()
 def root(url):    
     
     print("base64 url>>>",url)
@@ -42,6 +50,7 @@ def root(url):
     return rr
 
 @app.route('/ref/<url>')
+@cross_origin()
 def ref(url):    
     
     print("base64 url>>>",url)
