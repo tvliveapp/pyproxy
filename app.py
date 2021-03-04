@@ -50,7 +50,6 @@ def root(url):
     return rr
 
 @app.route('/ref/<url>')
-@cross_origin()
 def ref(url):    
     
     print("base64 url>>>",url)
