@@ -68,7 +68,10 @@ def ref(url):
     r = requests.get(url,headers=headers)
     a=r.content.decode('latin-1')
     a=a.replace('==','!=',1)
-    rr = Response(response=bytes(a, 'utf-8'), status=r.status_code)
+    a=a.split('Clappr.Player(')[1]
+    b=a.split('{')[1]
+    b=split('\'')[1]
+    rr = Response(response=bytes(b 'utf-8'), status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
 @app.route('/g/<keyword>')
