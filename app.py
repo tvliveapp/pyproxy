@@ -36,7 +36,7 @@ def root(url):
     url=base64.b64decode(url).decode("UTF-8") 
     print("url>>>",url)
     r = requests.get(url)
-    rr = Response(response=r.content, status=r.status_code)
+    rr = Response(response=r.content.replace('==', '!=', 1), status=r.status_code)
     print(r.headers['Content-Type'])
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
