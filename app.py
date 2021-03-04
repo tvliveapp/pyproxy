@@ -44,12 +44,9 @@ def root(url):
     url=base64.b64decode(url).decode("UTF-8") 
     print("url>>>",url)
     r = requests.get(url)
-    print(r.con)
-    a=r.text.split('Clappr.Player(')[1]
-    b=a.split('{')[1]
-    b=b.split('\'')[1]
-    #rr = Response(response=r.content, status=r.status_code)
-    rr = Response(response=b, status=r.status_code)
+   
+    rr = Response(response=r.content, status=r.status_code)
+    #rr = Response(response=b, status=r.status_code)
     
     print(r.headers['Content-Type'])
     rr.headers["Content-Type"] = r.headers['Content-Type']
@@ -70,7 +67,7 @@ def ref(url):
     headers["Referer"] =ref
     r = requests.get(url,headers=headers)
     
-    rr = Response(response=r.content.replace('==','!='), status=r.status_code)
+    rr = Response(response=r.content.replace('==','!=').encode(), status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
 @app.route('/g/<keyword>')
