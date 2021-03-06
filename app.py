@@ -62,6 +62,7 @@ def ref(url):
     print("url>>>",url)
     headers = CaseInsensitiveDict()
     ref=url.split("|")[1]
+    vlc=url.split("|")[2]
     url=url.split("|")[0]
     
     print("ref: "+ref)
@@ -73,8 +74,10 @@ def ref(url):
     b=a.split('{')[1]
     b=b.split('\'')[1]
     rr = Response(response=bytes(b,'utf-8'), status=r.status_code)
-    #rr.headers["Content-Type"] = r.headers['Content-Type']
-    rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
+    if vlc='vlc':
+        rr.headers["Content-Type"] = r.headers['Content-Type']
+    else:
+        rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
     return rr
 @app.route('/g/<keyword>')
 def gkeyword(keyword):    
