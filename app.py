@@ -74,7 +74,7 @@ def ref(url):
     b=a.split('{')[1]
     b=b.split('\'')[1]
     rr = Response(response=bytes(b,'utf-8'), status=r.status_code)
-    if vlc='vlc':
+    if vlc=='vlc':
         rr.headers["Content-Type"] = r.headers['Content-Type']
     else:
         rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
