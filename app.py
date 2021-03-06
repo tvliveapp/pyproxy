@@ -91,7 +91,7 @@ def iptvhd(url):
         rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
     return rr
 @app.route('/same/<url>')
-def ref(url):    
+def same(url):    
     
     print("base64 url>>>",url)
     url=base64.b64decode(url).decode("UTF-8") 
