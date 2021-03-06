@@ -42,7 +42,7 @@ def root(url):
     return rr
 
 @app.route('/iptvhd/<url>')
-def ref(url):    
+def iptvhd(url):    
     
     print("base64 url>>>",url)
     url=base64.b64decode(url).decode("UTF-8") 
