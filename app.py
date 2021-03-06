@@ -107,7 +107,7 @@ def same(url):
     r = requests.get(url,headers=headers)
     rr = Response(response=bytes(url,'utf-8'), status=r.status_code)        
     if vlc=='vlc':
-        rr.headers["Content-Type"] = r.headers['Content-Type']
+        rr.headers["Content-Type"] = 'text/html'
     else:
         rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
     return rr
