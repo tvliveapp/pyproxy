@@ -40,6 +40,28 @@ def root(url):
     print(r.headers['Content-Type'])
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
+@app.route('/ref/<url>')
+def ref(url):    
+    
+    print("base64 url>>>",url)
+    url=base64.b64decode(url).decode("UTF-8") 
+    
+    print("url>>>",url)
+    headers = CaseInsensitiveDict()
+    ref=url.split("|")[1]
+    url=url.split("|")[0]
+    
+    print("ref: "+ref)
+    headers["Referer"] =ref
+    r = requests.get(url,headers=headers)  
+    a=r.content.decode('latin-1')
+    a=a.replace('==','!=',1)
+    a=a.split('Clappr.Player(')[1]
+    b=a.split('{')[1]
+    b=b.split('\'')[1]
+    rr = Response(response=bytes(b,'utf-8'), status=r.status_code)
+    rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
+    return rr
 
 @app.route('/iptvhd/<url>')
 def iptvhd(url):    
