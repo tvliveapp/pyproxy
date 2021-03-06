@@ -78,7 +78,6 @@ def ref(url):
     headers = CaseInsensitiveDict()
     ref=url.split("|")[1]
     vlc=url.split("|")[2]
-    source=url.split("|")[3]
     url=url.split("|")[0]
     
     print("ref: "+ref)
