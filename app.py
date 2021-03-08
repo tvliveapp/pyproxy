@@ -40,6 +40,13 @@ def root(url):
     print(r.headers['Content-Type'])
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
+
+@app.route('/playlist/<url>')
+def ref(playlist):
+    rr = Response(response=bytes("http://38.18.238.35:2095/102estrellas/transco1/chunk_Auth=ix08x%C2%A0Z6Q7r567Z5%5E@9WxF%C2%A0g7x%C2%A6c=1/playlist.m3u8",'utf-8'), status=200)
+    rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
+    return rr
+    
 @app.route('/ref/<url>')
 def ref(url):    
     
