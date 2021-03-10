@@ -22,7 +22,7 @@ def home():
     page = request.args.get('fnc', default = '', type = str)
     filter = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
-    return page+' '+filter+' '+web
+    return page+' '+filter+' '+str(web)
 
 
 '''
