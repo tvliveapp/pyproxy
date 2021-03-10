@@ -21,7 +21,9 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def home():
-    usage = 'Pass a properly encoded url parameter e.g. /https/www.google.com'
+    page = request.args.get('page', default = 1, type = int)
+    filter = request.args.get('filter', default = '*', type = str)
+    usage = 'Pass a properly encoded url parameter e.g. /https/www.google.com'+filter
     return usage
 
 import base64
