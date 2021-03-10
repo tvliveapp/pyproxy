@@ -16,8 +16,16 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
+@app.route('/')
+@cross_origin()
+def home():
+    page = request.args.get('fnc', default = '', type = str)
+    filter = request.args.get('ch', default = 'test', type = str)
+    web= request.args.get('web', default = false, type = bool)
+    return page+' 'filter+' '+web
 
 
+'''
 
 @app.route('/')
 def home():
@@ -140,6 +148,7 @@ def gsubreddit(subreddit):
     rr = Response(response=subscribers, status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
+'''
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
