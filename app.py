@@ -1,3 +1,4 @@
+'''
 import os
 import requests
 
@@ -38,7 +39,7 @@ def home():
 def update():
     return updateChns()
 
-'''
+
 
 @app.route('/')
 def home():
