@@ -20,7 +20,7 @@ url="https://raw.githubusercontent.com/tvliveapp/channels/master/channelsUrl.jso
 def updateChns():
     global channels
     resp = requests.get(url)
-    channels = json.loads(rest.text)
+    channels = json.loads(resp.text)
     return r.status_code
 updateChns()    
 
