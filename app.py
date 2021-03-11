@@ -169,19 +169,21 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 '''
+
+
 import os
 import requests
 
 from requests.structures import CaseInsensitiveDict
 
-from lxml import html
+#from lxml import html
 
 from flask import request
 from flask import Flask
 from flask import Response
 from flask_cors import CORS, cross_origin
 import json
-
+import iptvhdFcn
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -205,7 +207,7 @@ def home():
     web= request.args.get('web', default = False, type = bool)
     rp=''
     if fnc=='iptvhd':
-        pass
+        rp=iptvhdFcn.iptvhdFcn(channels[ch]['stream_link'])
     else:
         rp=channels[ch]['stream_link']
     rr = Response(response=bytes(rp,'utf-8'), status=200)
