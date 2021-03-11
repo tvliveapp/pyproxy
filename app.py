@@ -21,7 +21,17 @@ def updateChns():
     global channels
     resp = requests.get(url)
     channels = json.loads(rest.text)
+    return r.status_code
 updateChns()    
+
+@app.route('/')
+@cross_origin()
+def home():
+    global channels
+    fnc = request.args.get('fnc', default = '', type = str)
+    ch = request.args.get('ch', default = 'test', type = str)
+    web= request.args.get('web', default = False, type = bool)
+    return fnc+' '+ch+' '+str(web)+'\n\n\n\n'+json.dumps(channels)
 
 @app.route('/')
 @cross_origin()
