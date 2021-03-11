@@ -18,13 +18,15 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 channels={}
 url="https://raw.githubusercontent.com/tvliveapp/channels/master/channelsUrl.json"
 def updateChns():
+    global channels
     resp = requests.get(url)
     channels = json.loads(rest.text)
-    
+updateChns()    
 
 @app.route('/')
 @cross_origin()
 def home():
+    global channels
     fnc = request.args.get('fnc', default = '', type = str)
     ch = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
