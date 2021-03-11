@@ -33,15 +33,10 @@ def home():
     web= request.args.get('web', default = False, type = bool)
     return fnc+' '+ch+' '+str(web)+'\n\n\n\n'+json.dumps(channels)
 
-@app.route('/')
+@app.route('/update/')
 @cross_origin()
-def home():
-    global channels
-    fnc = request.args.get('fnc', default = '', type = str)
-    ch = request.args.get('ch', default = 'test', type = str)
-    web= request.args.get('web', default = False, type = bool)
-    return fnc+' '+ch+' '+str(web)+'\n\n\n\n'+json.dumps(channels)
-
+def update():
+    return updateChns()
 
 '''
 
