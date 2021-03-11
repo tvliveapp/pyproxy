@@ -162,7 +162,62 @@ def gsubreddit(subreddit):
     rr = Response(response=subscribers, status=r.status_code)
     rr.headers["Content-Type"] = r.headers['Content-Type']
     return rr
+
+
+if __name__ == '__main__':
+    # Bind to PORT if defined, otherwise default to 5000.
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
 '''
+import os
+import requests
+
+from requests.structures import CaseInsensitiveDict
+
+#from lxml import html
+
+from flask import request
+from flask import Flask
+from flask import Response
+from flask_cors import CORS, cross_origin
+import json
+
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+channels={}
+url="https://raw.githubusercontent.com/tvliveapp/channels/master/channelsUrl.json"
+def updateChns():
+    global channels
+    resp = requests.get(url)
+    print(resp.status_code)
+    channels = json.loads(resp.text)
+    return resp.status_code
+updateChns()    
+
+@app.route('/')
+@cross_origin()
+def home():
+    global channels
+    fnc = request.args.get('fnc', default = '', type = str)
+    ch = request.args.get('ch', default = 'test', type = str)
+    web= request.args.get('web', default = False, type = bool)
+    rp=''
+    if fnc=='iptvhd':
+        pass
+    else:
+        rp=channels[ch]['stream_link']
+    rr = Response(response=bytes(rp,'utf-8'), status=200)
+    if not web:
+        rr.headers["Content-Type"] = 'text/html'
+    else:
+        rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
+    return rr
+@app.route('/update/')
+@cross_origin()
+def update():
+    return str(updateChns())
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
