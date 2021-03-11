@@ -174,7 +174,7 @@ import requests
 
 from requests.structures import CaseInsensitiveDict
 
-#from lxml import html
+from lxml import html
 
 from flask import request
 from flask import Flask
