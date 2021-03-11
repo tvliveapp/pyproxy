@@ -9,20 +9,26 @@ from flask import request
 from flask import Flask
 from flask import Response
 from flask_cors import CORS, cross_origin
-
+import json
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+channels={}
+url="https://raw.githubusercontent.com/tvliveapp/channels/master/channelsUrl.json"
+def updateChns():
+    resp = requests.get(url)
+    channels = json.loads(rest.text)
+    
 
 @app.route('/')
 @cross_origin()
 def home():
-    page = request.args.get('fnc', default = '', type = str)
-    filter = request.args.get('ch', default = 'test', type = str)
+    fnc = request.args.get('fnc', default = '', type = str)
+    ch = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
-    return page+' '+filter+' '+str(web)
+    return fnc+' '+ch+' '+str(web)+'\n\n\n\'+json.dumps(channels)
 
 
 '''
