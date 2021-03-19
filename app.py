@@ -184,6 +184,7 @@ from flask import Response
 from flask_cors import CORS, cross_origin
 import json
 import iptvhdFcn
+import foxPrFcn
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -208,6 +209,8 @@ def home():
     rp=''
     if fnc=='iptvhd':
         rp=iptvhdFcn.iptvhdFcn(channels[ch]['stream_link'])
+    if fnc=='foxPrFcn':
+        rp=foxPrFcn.foxPrFcn(channels[ch]['stream_link'])
     else:
         rp=channels[ch]['stream_link']
     rr = Response(response=bytes(rp,'utf-8'), status=200)
