@@ -1,7 +1,7 @@
 import requests
 import json
 import base64
-from pyaes import aes
+#from pyaes import aes
 from requests.structures import CaseInsensitiveDict
 #"fs1ar"  "fs2ar" "fs3ar" "fspar"
 url1="https://cdn.tsnt.xyz/"
