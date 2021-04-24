@@ -190,9 +190,10 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 channels={}
-url="https://raw.githubusercontent.com/tvliveapp/channels/master/channelsUrl.json"
+url="https://raw.githubusercontent.com/tvliveapp/channels/master/estaticos.json"
 def updateChns():
     global channels
+    iptvhdFcn.updateChns()
     resp = requests.get(url)
     print(resp.status_code)
     channels = json.loads(resp.text)
@@ -208,8 +209,8 @@ def home():
     web= request.args.get('web', default = False, type = bool)
     rp=''
     if fnc=='iptvhd':
-        rp=iptvhdFcn.iptvhdFcn(channels[ch]['stream_link'])
-    if fnc=='foxPrFcn':
+        rp=iptvhdFcn.iptvhdFcn(ch)
+    elif fnc=='foxPrFcn':
         rp=foxPrFcn.foxPrFcn(channels[ch]['stream_link'])
     else:
         rp=channels[ch]['stream_link']
