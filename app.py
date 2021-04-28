@@ -212,7 +212,7 @@ def home():
         rp=iptvhdFcn.iptvhdFcn(ch)
     elif fnc=='foxPrFcn':
         rp=foxPrFcn.foxPrFcn(channels[ch]['stream_link'])
-    elif fcn=='proxy':
+    elif fnc=='proxy':
         playlist = m3u8.load('http://iptvhd.club:8081/televall2021/2_.m3u8?token=OYM0xDCO9_amY92fhtwdyw&expires=1619593289')
         for i in range(len(playlist.segments)):
 	        playlist.segments[i].uri=playlist.segments[i].absolute_uri
