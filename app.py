@@ -198,12 +198,13 @@ def updateChns():
     print(resp.status_code)
     channels = json.loads(resp.text)
     return resp.status_code
-updateChns()    
+updateChns()
 def loadM3u8(url):
-	playlist = m3u8.load('http://iptvhd.club:8081/televall2021/2_.m3u8?token=OYM0xDCO9_amY92fhtwdyw&expires=1619593289')
-        for i in range(len(playlist.segments)):
-	        playlist.segments[i].uri=playlist.segments[i].absolute_uri
-        return playlist.dumps()
+    playlist = m3u8.load(url)
+    for i in range(len(playlist.segments)):
+        playlist.segments[i].uri=playlist.segments[i].absolute_uri
+    return playlist.dumps()
+
 @app.route('/')
 @cross_origin()
 def home():
