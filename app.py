@@ -199,7 +199,11 @@ def updateChns():
     channels = json.loads(resp.text)
     return resp.status_code
 updateChns()    
-
+def loadM3u8(url):
+	playlist = m3u8.load('http://iptvhd.club:8081/televall2021/2_.m3u8?token=OYM0xDCO9_amY92fhtwdyw&expires=1619593289')
+        for i in range(len(playlist.segments)):
+	        playlist.segments[i].uri=playlist.segments[i].absolute_uri
+        return playlist.dumps()
 @app.route('/')
 @cross_origin()
 def home():
@@ -209,7 +213,7 @@ def home():
     web= request.args.get('web', default = False, type = bool)
     rp=''
     if fnc=='iptvhd':
-        rp=iptvhdFcn.iptvhdFcn(ch)
+        rp=loadM3u8(iptvhdFcn.iptvhdFcn(ch))
     elif fnc=='foxPrFcn':
         rp=foxPrFcn.foxPrFcn(channels[ch]['stream_link'])
     elif fnc=='proxy':
@@ -218,7 +222,7 @@ def home():
 	        playlist.segments[i].uri=playlist.segments[i].absolute_uri
         rp=playlist.dumps()
     else:
-        rp=channels[ch]['stream_link']
+        rp=loadM3u8(channels[ch]['stream_link'])
     rr = Response(response=bytes(rp,'utf-8'), status=200)
     if not web:
         #rr.headers["Content-Type"] = 'text/html'
