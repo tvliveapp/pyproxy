@@ -3,3 +3,4 @@ Werkzeug==0.16.0
 requests==2.22.0
 lxml==4.4.2
 flask-cors
+m3u8
