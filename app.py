@@ -216,7 +216,8 @@ def home():
         rp=channels[ch]['stream_link']
     rr = Response(response=bytes(rp,'utf-8'), status=200)
     if not web:
-        rr.headers["Content-Type"] = 'text/html'
+        #rr.headers["Content-Type"] = 'text/html'
+        rr.headers["Content-Type"] = 'application/x-mpegURL'
     else:
         rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
     return rr
