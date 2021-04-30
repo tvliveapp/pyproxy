@@ -210,7 +210,7 @@ def loadM3u8(url):
 @cross_origin()
 def home():
     global channels
-    ip_address = flask.request.remote_addr
+    ip_address = request.remote_addr
     print("Requester IP: " + ip_address)
     fnc = request.args.get('fnc', default = '', type = str)
     ch = request.args.get('ch', default = 'test', type = str)
