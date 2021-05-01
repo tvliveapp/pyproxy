@@ -214,7 +214,7 @@ def home():
     ip_address = request.remote_addr
     print("Requester IP: " + ip_address)
     if ip_address not in ips:
-		ips.append(ip_address)
+	ips.append(ip_address)
     fnc = request.args.get('fnc', default = '', type = str)
     ch = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
