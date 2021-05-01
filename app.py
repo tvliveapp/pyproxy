@@ -211,8 +211,7 @@ def loadM3u8(url):
 @cross_origin()
 def home():
     global channels, ips
-    ip_address = request.environ['REMOTE_ADDR']
-    print(dict(request.headers))
+    ip_address = request.headers['X-Forwarded-For']
     if ip_address not in ipList:
     	ipList.append(ip_address)
     fnc = request.args.get('fnc', default = '', type = str)
