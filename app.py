@@ -244,8 +244,8 @@ def update():
 @app.route('/ips/')
 @cross_origin()
 def ips():
-    global ips
-    return str(ips)
+    global ipList
+    return str(ipList)
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
