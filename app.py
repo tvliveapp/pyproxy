@@ -194,7 +194,7 @@ channels={}
 ips=[]
 url="https://raw.githubusercontent.com/tvliveapp/channels/master/estaticos.json"
 def updateChns():
-    global channels
+    global channels, ips
     iptvhdFcn.updateChns()
     resp = requests.get(url)
     print(resp.status_code)
@@ -210,7 +210,7 @@ def loadM3u8(url):
 @app.route('/')
 @cross_origin()
 def home():
-    global channels
+    global channels, ips
     ip_address = request.remote_addr
     print("Requester IP: " + ip_address)
     if ip_address not in ips:
@@ -244,6 +244,7 @@ def update():
 @app.route('/ips/')
 @cross_origin()
 def ips():
+    global ips
     return str(ips)
 
 if __name__ == '__main__':
