@@ -212,7 +212,7 @@ def loadM3u8(url):
 def home():
     global channels, ips
     ip_address = request.environ['REMOTE_ADDR']
-    print("Requester IP: " + ip_address)
+    print(dict(request.headers))
     if ip_address not in ipList:
     	ipList.append(ip_address)
     fnc = request.args.get('fnc', default = '', type = str)
