@@ -211,7 +211,7 @@ def loadM3u8(url):
 @cross_origin()
 def home():
     global channels, ips
-    ip_address = request.remote_addr
+    ip_address = request.environ['REMOTE_ADDR']
     print("Requester IP: " + ip_address)
     if ip_address not in ipList:
     	ipList.append(ip_address)
