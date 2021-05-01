@@ -191,7 +191,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 channels={}
-ips=[]
+ipList=[]
 url="https://raw.githubusercontent.com/tvliveapp/channels/master/estaticos.json"
 def updateChns():
     global channels, ips
@@ -213,8 +213,8 @@ def home():
     global channels, ips
     ip_address = request.remote_addr
     print("Requester IP: " + ip_address)
-    if ip_address not in ips:
-    	ips.append(ip_address)
+    if ip_address not in ipList:
+    	ipList.append(ip_address)
     fnc = request.args.get('fnc', default = '', type = str)
     ch = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
