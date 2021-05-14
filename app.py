@@ -231,7 +231,10 @@ def home():
             playlist.segments[i].uri=playlist.segments[i].absolute_uri
         rp=playlist.dumps()
     else:
-        rp=loadM3u8(channels[ch]['stream_link'])
+        if not web:
+            rp=loadM3u8(channels[ch]['stream_link'])
+        else:
+            rp=channels[ch]['stream_link']
     rr = Response(response=bytes(rp,'utf-8'), status=200)
     if not web:
         #rr.headers["Content-Type"] = 'text/html'
