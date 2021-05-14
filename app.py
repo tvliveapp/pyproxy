@@ -219,7 +219,10 @@ def home():
     web= request.args.get('web', default = False, type = bool)
     rp=''
     if fnc=='iptvhd':
-        rp=loadM3u8(iptvhdFcn.iptvhdFcn(ch))
+	if not web:
+		rp=loadM3u8(iptvhdFcn.iptvhdFcn(ch))
+	else:
+		rp=iptvhdFcn.iptvhdFcn(ch)
     elif fnc=='foxPrFcn':
         rp=foxPrFcn.foxPrFcn(channels[ch]['stream_link'])
     elif fnc=='proxy':
