@@ -213,22 +213,22 @@ def home():
     global channels, ips
     ip_address = request.headers['X-Forwarded-For']
     if ip_address not in ipList:
-    	ipList.append(ip_address)
+        ipList.append(ip_address)
     fnc = request.args.get('fnc', default = '', type = str)
     ch = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
     rp=''
     if fnc=='iptvhd':
-	if not web:
-		rp=loadM3u8(iptvhdFcn.iptvhdFcn(ch))
-	else:
-		rp=iptvhdFcn.iptvhdFcn(ch)
+        if not web:
+            rp=loadM3u8(iptvhdFcn.iptvhdFcn(ch))
+        else:
+            rp=iptvhdFcn.iptvhdFcn(ch)
     elif fnc=='foxPrFcn':
         rp=foxPrFcn.foxPrFcn(channels[ch]['stream_link'])
     elif fnc=='proxy':
         playlist = m3u8.load('http://iptvhd.club:8081/televall2021/2_.m3u8?token=OYM0xDCO9_amY92fhtwdyw&expires=1619593289')
         for i in range(len(playlist.segments)):
-	        playlist.segments[i].uri=playlist.segments[i].absolute_uri
+            playlist.segments[i].uri=playlist.segments[i].absolute_uri
         rp=playlist.dumps()
     else:
         rp=loadM3u8(channels[ch]['stream_link'])
