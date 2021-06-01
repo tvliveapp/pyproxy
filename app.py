@@ -222,7 +222,7 @@ def home():
         if not web:
             rp=loadM3u8(iptvhdFcn.iptvhdFcn(ch))
         else:
-            rp=iptvhdFcn.iptvhdFcn(ch)
+            rp=iptvhdFcn.iptvhdFcn(ch) 
     elif fnc=='foxPrFcn':
         rp=foxPrFcn.foxPrFcn(channels[ch]['stream_link'])
     elif fnc=='proxy':
