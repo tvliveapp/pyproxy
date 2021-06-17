@@ -241,6 +241,7 @@ def home():
         rr.headers["Content-Type"] = 'application/x-mpegURL'
     else:
         rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
+        rr.headers["Content-Type"] = 'application/x-mpegURL'
     return rr
 @app.route('/update/')
 @cross_origin()
