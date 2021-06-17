@@ -18,10 +18,10 @@ def updateChns():
 updateChns()    
 
 def iptvhdFcn(id):
-    print('id',id,channels[id]["srclink"])
-    if channels[id]["srclink"]== "iptvhd":
+    print('id',id,channels[id]["fcn"])
+    if channels[id]["fcn"]== "iptvhd":
         headers = CaseInsensitiveDict()
-        r = requests.get(channels[id]['stream_link'])
+        r = requests.get(channels[id]['srclink'])
         print(r.status_code)
         a=r.content.decode('latin-1')
         a=a.replace('==','!=',1)
@@ -31,6 +31,5 @@ def iptvhdFcn(id):
         print (b)
         return b
     else:
-        return channels[id]['stream_link']
-    
-print(iptvhdFcn('aptv11'))
+        return channels[id]['srclink']
+
