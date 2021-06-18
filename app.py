@@ -218,7 +218,7 @@ def home():
     ch = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
     cType= request.args.get('type', default = 'application/x-mpegURL', type = str)
-    proxy=type= request.args.get('type', default =False, type = bool)
+    proxyrequest.args.get('type', default =False, type = bool)
     
     rp=''
     if fnc=='iptvhd':
