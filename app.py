@@ -217,9 +217,12 @@ def home():
     fnc = request.args.get('fnc', default = '', type = str)
     ch = request.args.get('ch', default = 'test', type = str)
     web= request.args.get('web', default = False, type = bool)
+    cType= request.args.get('type', default = 'application/x-mpegURL', type = str)
+    prxy=type= request.args.get('type', default =false, type = bool)
+    
     rp=''
     if fnc=='iptvhd':
-        if not web:
+        if proxy:
             rp=loadM3u8(iptvhdFcn.iptvhdFcn(ch))
         else:
             rp=iptvhdFcn.iptvhdFcn(ch) 
@@ -231,22 +234,25 @@ def home():
             playlist.segments[i].uri=playlist.segments[i].absolute_uri
         rp=playlist.dumps()
     else:
-        if not web:
+        if proxy:
             rp=loadM3u8(channels[ch]['stream_link'])
         else:
             rp=channels[ch]['stream_link']
     rr = Response(response=bytes(rp,'utf-8'), status=200)
+    rr.headers["Content-Type"] = cType
+    '''
     if not web:
         #rr.headers["Content-Type"] = 'text/html'
         rr.headers["Content-Type"] = 'application/x-mpegURL'
     else:
         rr.headers["Content-Type"]="application/vnd.apple.mpegurl"
         rr.headers["Content-Type"] = 'application/x-mpegURL'
+    '''
     return rr
 @app.route('/update/')
 @cross_origin()
 def update():
-    return str(updateChns())
+    return str(updateChns(),channels)
 @app.route('/ips/')
 @cross_origin()
 def ips():
