@@ -252,7 +252,7 @@ def home():
 @app.route('/update/')
 @cross_origin()
 def update():
-    return str(updateChns()+'\n'+json.dumps(channels))
+    return str(updateChns())+'\n'+json.dumps(channels)
 @app.route('/ips/')
 @cross_origin()
 def ips():
